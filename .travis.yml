@@ -15,8 +15,6 @@ after_success:
   - docker build -t jackdog473/multi-server ./server
   - docker build -t jackdog473/multi-worker ./worker
   # Log in to the docker CLI
-  - echo "$DOCKER_ID"
-  - echo "$DOCKER_PASSWORD"
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Push images to docker hub
   - docker push jackdog473/multi-client
