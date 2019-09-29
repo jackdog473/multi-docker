@@ -4,22 +4,22 @@ services:
   - docker
 
 before_install:
-  - docker build -t sarvagnan/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t jackdog473/react-test -f ./client/Dockerfile.dev ./client
   
 script:
-  - docker run -e CI=true sarvagnan/react-test npm run test
+  - docker run -e CI=true jackdog473/react-test npm run test
 
 after_success:
-  - docker build -t sarvagnan/multi-client ./client
-  - docker build -t sarvagnan/multi-nginx ./nginx
-  - docker build -t sarvagnan/multi-server ./server
-  - docker build -t sarvagnan/multi-worker ./worker
+  - docker build -t jackdog473/multi-client ./client
+  - docker build -t jackdog473/multi-nginx ./nginx
+  - docker build -t jackdog473/multi-server ./server
+  - docker build -t jackdog473/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_ID"
   - echo "$DOCKER_PASSWORD"
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Push images to docker hub
-  - docker push sarvagnan/multi-client
-  - docker push sarvagnan/multi-nginx
-  - docker push sarvagnan/multi-server
-  - docker push sarvagnan/multi-worker
+  - docker push jackdog473/multi-client
+  - docker push jackdog473/multi-nginx
+  - docker push jackdog473/multi-server
+  - docker push jackdog473/multi-worker
